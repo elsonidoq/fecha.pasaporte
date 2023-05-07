@@ -1,0 +1,25 @@
+name: Update Notebook
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install Jupyter
+        run: pip install jupyter
+
+      - name: Run Notebook
+        run: jupyter nbconvert --execute --to notebook --inplace is-ready.ipynb
+
