@@ -28,6 +28,7 @@ jobs:
       - name: Run Notebook
         env:
           PASS: ${{ secrets.PASS }}
+          USR: ${{ secrets.USR }}
         run: |
          jupyter nbconvert --execute --to html is-ready.ipynb   --output index.html
          git add -A
