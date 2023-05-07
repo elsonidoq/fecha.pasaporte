@@ -2,7 +2,7 @@ name: Update Notebook
 
 on:
   schedule:
-    - cron: "* */4 * * *"
+    - cron: "0 */4 * * *"
   push:
     branches: [ "notebook-branch" ]
 
