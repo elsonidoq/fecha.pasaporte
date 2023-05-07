@@ -3,6 +3,8 @@ name: Update Notebook
 on:
   schedule:
     - cron: "*/1 * * * *"
+  push:
+    branches: [ "notebook-branch" ]
 
 jobs:
   update:
