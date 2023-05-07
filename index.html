@@ -15103,7 +15103,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     </script>
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div id="cell-id=fc23aba2" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div id="cell-id=14c8a535" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15141,7 +15141,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 </div>
 
-</div><div id="cell-id=4e0d1380" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div id="cell-id=36f41e16" class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15153,7 +15153,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="kn">from</span> <span class="nn">email.mime.text</span> <span class="kn">import</span> <span class="n">MIMEText</span>
 <span class="kn">from</span> <span class="nn">email.mime.multipart</span> <span class="kn">import</span> <span class="n">MIMEMultipart</span>
 
-<span class="k">def</span> <span class="nf">send_mail</span><span class="p">(</span><span class="n">body</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">send_mail</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
 
     <span class="c1"># Gmail account credentials</span>
     <span class="n">sender_email</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USR&#39;</span><span class="p">]</span>
@@ -15166,7 +15166,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <span class="n">message</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">()</span>
     <span class="n">message</span><span class="p">[</span><span class="s2">&quot;From&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sender_email</span>
     <span class="n">message</span><span class="p">[</span><span class="s2">&quot;To&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recipient_email</span>
-    <span class="n">message</span><span class="p">[</span><span class="s2">&quot;Subject&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;[pasaporte español]&quot;</span>
+    <span class="n">message</span><span class="p">[</span><span class="s2">&quot;Subject&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
 
     <span class="c1"># Email body</span>
     <span class="n">message</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s2">&quot;plain&quot;</span><span class="p">))</span>
@@ -15226,14 +15226,51 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
     <span class="k">if</span> <span class="n">find</span><span class="p">(</span><span class="n">soup</span><span class="p">):</span>
-        <span class="n">send_mail</span><span class="p">(</span><span class="n">body</span> <span class="o">=</span> <span class="s2">&quot;Hay fecha! https://www.cgeonline.com.ar/informacion/apertura-de-citas.html&quot;</span><span class="p">)</span>
+        <span class="n">send_mail</span><span class="p">(</span><span class="n">subject</span><span class="o">=</span><span class="s2">&quot;[pasaporte español] sii&quot;</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="s2">&quot;Hay fecha! https://www.cgeonline.com.ar/informacion/apertura-de-citas.html&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">send_mail</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="s1">&#39;no news&#39;</span><span class="p">)</span>
+        <span class="n">send_mail</span><span class="p">(</span><span class="n">subject</span><span class="o">=</span><span class="s2">&quot;[pasaporte español] noo&quot;</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="s1">&#39;no news&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+</div><div id="cell-id=07b1b1f9" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Email sent successfully!
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
