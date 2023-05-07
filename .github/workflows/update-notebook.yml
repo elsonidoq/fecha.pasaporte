@@ -21,5 +21,5 @@ jobs:
         run: pip install jupyter
 
       - name: Run Notebook
-        run: jupyter nbconvert --execute --to notebook --inplace is-ready.ipynb
+        run: jupyter nbconvert --execute --to html --output index.html  --inplace is-ready.ipynb
 
