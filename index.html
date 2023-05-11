@@ -15123,33 +15123,33 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <span class="n">sender_password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PASS&#39;</span><span class="p">]</span>
 
     <span class="c1"># Recipient email address</span>
-    <span class="n">recipient_email</span> <span class="o">=</span> <span class="s1">&#39;elsonidoq@gmail.com&#39;</span>
+    <span class="n">recipient_emails</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;elsonidoq@gmail.com&#39;</span><span class="p">,</span> <span class="s1">&#39;rodcaralb@gmail.com&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">recipient_email</span> <span class="ow">in</span> <span class="n">recipient_emails</span><span class="p">:</span>
+        <span class="c1"># Create a message object</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">()</span>
+        <span class="n">message</span><span class="p">[</span><span class="s2">&quot;From&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sender_email</span>
+        <span class="n">message</span><span class="p">[</span><span class="s2">&quot;To&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recipient_email</span>
+        <span class="n">message</span><span class="p">[</span><span class="s2">&quot;Subject&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
 
-    <span class="c1"># Create a message object</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">()</span>
-    <span class="n">message</span><span class="p">[</span><span class="s2">&quot;From&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sender_email</span>
-    <span class="n">message</span><span class="p">[</span><span class="s2">&quot;To&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recipient_email</span>
-    <span class="n">message</span><span class="p">[</span><span class="s2">&quot;Subject&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
+        <span class="c1"># Email body</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s2">&quot;plain&quot;</span><span class="p">))</span>
 
-    <span class="c1"># Email body</span>
-    <span class="n">message</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s2">&quot;plain&quot;</span><span class="p">))</span>
+        <span class="c1"># Connect to Gmail&#39;s SMTP server</span>
+        <span class="n">smtp_server</span> <span class="o">=</span> <span class="s2">&quot;smtp.gmail.com&quot;</span>
+        <span class="n">smtp_port</span> <span class="o">=</span> <span class="mi">587</span>
+        <span class="n">smtp_connection</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">smtp_server</span><span class="p">,</span> <span class="n">smtp_port</span><span class="p">)</span>
+        <span class="n">smtp_connection</span><span class="o">.</span><span class="n">starttls</span><span class="p">()</span>
 
-    <span class="c1"># Connect to Gmail&#39;s SMTP server</span>
-    <span class="n">smtp_server</span> <span class="o">=</span> <span class="s2">&quot;smtp.gmail.com&quot;</span>
-    <span class="n">smtp_port</span> <span class="o">=</span> <span class="mi">587</span>
-    <span class="n">smtp_connection</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">smtp_server</span><span class="p">,</span> <span class="n">smtp_port</span><span class="p">)</span>
-    <span class="n">smtp_connection</span><span class="o">.</span><span class="n">starttls</span><span class="p">()</span>
+        <span class="c1"># Login to Gmail account</span>
+        <span class="n">smtp_connection</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">sender_email</span><span class="p">,</span> <span class="n">sender_password</span><span class="p">)</span>
 
-    <span class="c1"># Login to Gmail account</span>
-    <span class="n">smtp_connection</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">sender_email</span><span class="p">,</span> <span class="n">sender_password</span><span class="p">)</span>
+        <span class="c1"># Send the email</span>
+        <span class="n">smtp_connection</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">sender_email</span><span class="p">,</span> <span class="n">recipient_email</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
 
-    <span class="c1"># Send the email</span>
-    <span class="n">smtp_connection</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">sender_email</span><span class="p">,</span> <span class="n">recipient_email</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+        <span class="c1"># Close the connection</span>
+        <span class="n">smtp_connection</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 
-    <span class="c1"># Close the connection</span>
-    <span class="n">smtp_connection</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Email sent successfully!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Email sent successfully to </span><span class="si">{</span><span class="n">recipient_email</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15228,7 +15228,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>2023-05-11 12:32:06.600499
+<pre>2023-05-11 14:23:17.897187
 </pre>
 </div>
 </div>
@@ -15237,7 +15237,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 </div>
 
-</div><div id="cell-id=07b1b1f9" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div id="cell-id=3ccbb64e" class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15265,7 +15265,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Email sent successfully!
+<pre>Email sent successfully to elsonidoq@gmail.com!
+Email sent successfully to rodcaralb@gmail.com!
 </pre>
 </div>
 </div>
